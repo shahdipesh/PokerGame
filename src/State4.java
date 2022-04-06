@@ -10,10 +10,18 @@ public class State4 extends GameState {
 
         messages.add("Each player has been dealt new cards.");
         messages.add("Click on Proceed to see the winner!");
+        messages.add(null);
+        messages.add(null);
+
         return messages;
     }
 
-    public GameState getNextState() {
-        return null;
+    public void performAction() {
+        getGameLogic().getCPUHand().draw(getGameLogic().getDeck(), false);
+        getGameLogic().getHumanHand().draw(getGameLogic().getDeck(), true);
+    }
+
+    public GameState getNextState(){
+        return new State5(getGameLogic());
     }
 }

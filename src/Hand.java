@@ -9,6 +9,9 @@ public class Hand implements Handable{
 
     public Hand() {
         hand = new ArrayList<Cardable>(Handable.HAND_SIZE);
+        for(int i=0;i<5;i++){
+            hand.add(null);
+        }
     }
 
     @Override
@@ -25,10 +28,11 @@ public class Hand implements Handable{
     @Override
     public void draw(Deckable d, boolean faceUp) {
         for(int i=0;i<Handable.HAND_SIZE;i++){
-            if(this.hand.get(i)==null) {
+            if(hand.get(i)==null) {
                 Cardable cardToAdd = d.drawACard(faceUp);
-                this.hand.add(cardToAdd);
+                hand.set(i,cardToAdd);
             }
+
         }
     }
 
@@ -39,20 +43,21 @@ public class Hand implements Handable{
         }
     }
 
-    //should it go over arraylist of hands and remove the cards that has selected ==true
+
+
     @Override
     public LinkedList<Cardable> discard() {
         LinkedList<Cardable> toDiscard = new LinkedList<Cardable>();
         for (int i=0;i<hand.size();i++){
             if(((Card)(hand.get(i))).getSelected()) {
-                toDiscard.add((hand.remove(i)));
+                hand.set(i,null);
+                toDiscard.add((hand.get(i)));
             }
         }
         return toDiscard;
     }
 
-    //should delete from hand?
-    //should change the faceUp to down?
+
     @Override
     public LinkedList<Cardable> returnCards() {
         LinkedList<Cardable> cardList = new LinkedList<Cardable>();

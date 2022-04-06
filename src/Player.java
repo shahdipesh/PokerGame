@@ -8,6 +8,7 @@ abstract class Player {
         wins = 0;
         hand = new Hand();
     }
+    public abstract void makeMove();
 
     public String getName() {
         return name;

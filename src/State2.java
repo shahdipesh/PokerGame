@@ -10,11 +10,15 @@ public class State2 extends GameState {
 
         messages.add(getGameLogic().getHumanPlayer().getName() + " has discarded cards.");
         messages.add(getGameLogic().getCpuPlayer().getName() + " is thinking...");
-
+        messages.add(null);
+        messages.add(null);
         return messages;
+    }
+    public void performAction() {
+        getGameLogic().getDiscardedCards().addAll(getGameLogic().getHumanHand().discard());
     }
 
     public GameState getNextState() {
-        return null;
+        return new State3(getGameLogic());
     }
 }

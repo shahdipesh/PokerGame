@@ -11,11 +11,16 @@ public class State1 extends GameState {
         messages.add("Beginning of Game " + getGameLogic().getGameNumber());
         messages.add(getGameLogic().getHumanPlayer().getName() + ", choose which cards to discard");
         messages.add("and click on the Proceed button.");
-
+        messages.add(null);
         return messages;
     }
 
+    public void performAction() {
+        getGameLogic().increamentGameNumber();
+        getGameLogic().getHumanHand().showAllCards();
+    }
+
     public GameState getNextState() {
-        return null;
+        return new State2(getGameLogic());
     }
 }

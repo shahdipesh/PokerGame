@@ -23,7 +23,21 @@ public class State5 extends GameState {
         return messages;
     }
 
+    public void performAction() {
+        getGameLogic().getCPUHand().showAllCards();
+
+        int compareHands = getGameLogic().getHumanHand().compareTo(getGameLogic().getCPUHand());
+
+        if (compareHands > 0) {
+            winner = getGameLogic().getHumanPlayer();
+        } else if (compareHands < 0) {
+            winner = getGameLogic().getCpuPlayer();
+        } else {
+            winner = null;
+        }
+    }
+
     public GameState getNextState() {
-        return null;
+        return new State6(getGameLogic());
     }
 }

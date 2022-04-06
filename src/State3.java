@@ -10,11 +10,17 @@ public class State3 extends GameState {
 
         messages.add(getGameLogic().getCpuPlayer().getName() + " has discarded cards.");
         messages.add("Each player will be dealt the same number of cards they discarded.");
-
+        messages.add(null);
+        messages.add(null);
         return messages;
     }
 
+    public void performAction() {
+        getGameLogic().getCpuPlayer().makeMove();
+    }
+
+
     public GameState getNextState() {
-        return null;
+        return new State4(getGameLogic());
     }
 }

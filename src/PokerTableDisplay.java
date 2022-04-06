@@ -18,7 +18,7 @@ import java.awt.event.*;
 public class PokerTableDisplay
 {
 	//Constants
-	private String PATH_CARD_BACK = "./Images/backCard2150.png";
+	private String PATH_CARD_BACK = "/Users/dipeshasd/Desktop/Assignment3/src/Images/backCard2150.png";
 	private Color POKER_TABLE_COLOR = new Color(50, 175, 50);
 	private int NUM_MESSAGE_ROWS = 4;
 	

@@ -4,31 +4,31 @@ import java.util.Collections;
 public  class HandLogic {
 
 
-    public boolean isFlush(ArrayList<Cardable> hand){
+    public int isFlush(ArrayList<Cardable> hand){
         Collections.sort(hand,new SortBySuit());
-        if(hand.get(0).getSuit()==hand.get(hand.size()-1).getSuit()){
-            return true;
+        if(((Card)hand.get(0)).getSuit()==((Card)hand.get(hand.size()-1)).getSuit()){
+            return ((Card)hand.get(hand.size()-1)).getValue();
         }
         else{
-            return false;
+            return -1;
         }
     }
 
-        public boolean isStraightFlush(ArrayList<Cardable> hand){
+        public int isStraightFlush(ArrayList<Cardable> hand){
         Collections.sort(hand,new SortBySuit());
-        if(this.isFlush(hand) && isStraight(hand)){
-            return true;
+        if(this.isFlush(hand)!=-1 && isStraight(hand)!=-1){
+            return ((Card)hand.get(hand.size()-1)).getValue();
         }
         else{
-            return false;
+            return -1;
         }
     }
 
-    public static boolean isStraight( ArrayList<Cardable> h )
+    public  int isStraight( ArrayList<Cardable> h )
     {
         int i, testRank;
         Collections.sort(h,new SortByValue());
-
+        boolean result;
       /* ===========================
          Check if hand has an Ace
          =========================== */
@@ -42,7 +42,13 @@ public  class HandLogic {
             boolean secondPass = ((Card)h.get(0)).getValue() == 10 && ((Card)h.get(1)).getValue() == 11 &&
                     ((Card)h.get(2)).getValue() == 12 && ((Card)h.get(3)).getValue() == 13 ;
 
-            return ( firstPass || secondPass );
+            result = firstPass || secondPass ;
+            if(result){
+                return ((Card)h.get(h.size()-1)).getValue();
+            }
+            else{
+                return -1;
+            }
         }
         else
         {
@@ -54,20 +60,20 @@ public  class HandLogic {
             for ( i = 1; i < 5; i++ )
             {
                 if ( ((Card)h.get(i)).getValue() != testRank )
-                    return false;        // Straight failed...
+                    return -1;        // Straight failed...
 
                 testRank++;   // Next card in hand
             }
 
-            return(true);        // Straight found !
+              return ((Card)h.get(h.size()-1)).getValue();        // Straight found !
         }
     }
 
-    public boolean isFourOfAKind(ArrayList<Cardable> h )
+    public int isFourOfAKind(ArrayList<Cardable> h )
     {
 
         Collections.sort(h,new SortByValue());
-
+        boolean result;
       /* ------------------------------------------------------
          Check for: 4 cards of the same rank
 	            + higher ranked unmatched card
@@ -85,14 +91,20 @@ public  class HandLogic {
                 ((Card)h.get(2)).getValue() == ((Card)h.get(3)).getValue() &&
                 ((Card)h.get(3)).getValue() == ((Card)h.get(4)).getValue() ;
 
-        return a1 || a2 ;
+        result = a1 || a2 ;
+        if(result){
+            return ((Card)h.get(h.size()-1)).getValue();
+        }
+        else{
+            return -1;
+        }
     }
 
-    public static boolean isFullHouse(ArrayList<Cardable> h )
+    public  int isFullHouse(ArrayList<Cardable> h )
     {
 
         Collections.sort(h,new SortByValue());
-
+        boolean result;
       /* ------------------------------------------------------
          Check for: x x x y y
 	 ------------------------------------------------------- */
@@ -107,14 +119,20 @@ public  class HandLogic {
                 ((Card)h.get(2)).getValue() == ((Card)h.get(3)).getValue() &&
                 ((Card)h.get(3)).getValue() == ((Card)h.get(4)).getValue();
 
-        return( threeOfAKind || twoOfAkind );
+        result =( threeOfAKind || twoOfAkind );
+        if(result){
+            return ((Card)h.get(h.size()-1)).getValue();
+        }
+        else{
+            return -1;
+        }
     }
 
-    public static boolean isThreeOfAKind( ArrayList<Cardable> h )
+    public  int isThreeOfAKind( ArrayList<Cardable> h )
     {
 
         Collections.sort(h,new SortByValue());
-
+         boolean result;
       /* ------------------------------------------------------
          Check for: x x x a b
 	 ------------------------------------------------------- */
@@ -142,19 +160,25 @@ public  class HandLogic {
                 ((Card)h.get(1)).getValue() != ((Card)h.get(2)).getValue()&&
                 ((Card)h.get(0)).getValue()!= ((Card)h.get(1)).getValue();
 
-        return( firstCase || secondCase || thirdCase );
+        result =( firstCase || secondCase || thirdCase );
+
+        if(result){
+            return ((Card)h.get(h.size()-1)).getValue();
+        }
+        else{
+            return -1;
+        }
 
     }
 
-    public  boolean isAPair( ArrayList<Cardable> h )
+    public  int isAPair( ArrayList<Cardable> h )
     {
         boolean a1, a2, a3;
         Collections.sort(h,new SortByValue());
 
         boolean result;
-        if ( isFourOfAKind(h) || isFullHouse(h) || isThreeOfAKind(h) ) {
-            result= false;
-            return result;
+        if ( isFourOfAKind(h)!=-1 || isFullHouse(h)!=-1 || isThreeOfAKind(h)!=-1 ) {
+            return -1;
         }
 
       /* --------------------------------
@@ -177,7 +201,13 @@ public  class HandLogic {
 
         result= a1||a2||a3;
 
-        return result;
+        if(result){
+            return ((Card)h.get(h.size()-1)).getValue();
+        }
+        else{
+            return -1;
+        }
+
     }
 
 

@@ -5,22 +5,20 @@ public class State3 extends GameState {
         super(gameLogic);
     }
 
-    public ArrayList<String> getMessages() {
+    public ArrayList<String> playState() {
         ArrayList<String> messages = new ArrayList<String>();
 
-        messages.add(getGameLogic().getCpuPlayer().getName() + " has discarded cards.");
+        getGL().getCpuPlayer().discardCards();
+
+        messages.add(getGL().getCpuPlayer().getName() + " has discarded cards.");
         messages.add("Each player will be dealt the same number of cards they discarded.");
         messages.add(null);
         messages.add(null);
+
         return messages;
     }
 
-    public void performAction() {
-        getGameLogic().getCpuPlayer().makeMove();
-    }
-
-
-    public GameState getNextState() {
-        return new State4(getGameLogic());
+    public GameState goToNextState() {
+        return new State4(getGL());
     }
 }

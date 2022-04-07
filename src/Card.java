@@ -128,6 +128,7 @@ public class Card implements Cardable{
         return mySuit;
     }
 
+
     public void setMySuit(Suit mySuit) {
         this.mySuit = mySuit;
     }

@@ -6,7 +6,7 @@
 //
 //-----------------------------------------
 
-public class CpuPlayer extends Player{
+public class CpuPlayer extends Player {
 
     public CpuPlayer() {
         super("Cpu");
@@ -14,7 +14,12 @@ public class CpuPlayer extends Player{
 
     //AI implementation for dumb cpu
     @Override
-    public void makeMove() {
-
+    public void discardCards() {
+        if(getPlayerHand().evaluateHand().equals("Nothing")){
+            ((Card)(getPlayerHand().getCard(0))).setSelected(true);
+        }
+        else if(getPlayerHand().evaluateHand().equals("Pair")){
+            ((Card)(getPlayerHand().getCard(0))).setSelected(true);
+        }
     }
 }

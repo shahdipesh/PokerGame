@@ -9,20 +9,20 @@
 import java.util.ArrayList;
 
 public abstract class GameState {
-    private GameLogic gameLogic;
+    private GameLogic gL;
 
     //constructor
     //each state of a game has separate things to do
-    public GameState(GameLogic gameLogic) {
-        this.gameLogic = gameLogic;
+    public GameState(GameLogic gL) {
+        this.gL = gL;
     }
 
-    public GameLogic getGameLogic() {
-        return gameLogic;
+    public GameLogic getGL() {
+        return gL;
     }
 
-    public abstract ArrayList<String> getMessages();
-    public abstract GameState getNextState();
-    public abstract void performAction();
+    public abstract ArrayList<String> playState();
+
+    public abstract GameState goToNextState();
 
 }

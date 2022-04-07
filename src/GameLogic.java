@@ -9,7 +9,7 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class GameLogic implements GameLogicable{
+public class GameLogic implements GameLogicable {
 
     private GameState currentState;
     private int numGames;
@@ -20,10 +20,10 @@ public class GameLogic implements GameLogicable{
 
     //constructor
     public GameLogic() {
-        discardedCards=new LinkedList<Cardable>();
+        discardedCards = new LinkedList<Cardable>();
         numGames = 0;
-        currentState =  null;
-        deck=new Deck();
+        currentState = new State1(this);
+        deck = new Deck();
         cpuPlayer = new DumbCpuPlayer();
         humanPlayer = new HumanPlayer("Player 1");
         deck.shuffle();
@@ -35,34 +35,29 @@ public class GameLogic implements GameLogicable{
     //The method returns a boolean that indicates if the proceed button in the GUI should be enabled (return true) or not (return false). This was done to get more flexibility in the GUI, but is not really useful currently. You can just return true all the time.
     @Override
     public boolean nextState(String[] messages) {
-        if (currentState == null) {
-            currentState = new State1(this);
-        } else {
-            currentState = currentState.getNextState();
-        }
+        ArrayList<String> msgToDisplay = currentState.playState();
 
-        currentState.performAction();
-        ArrayList<String> msgToDisplay = currentState.getMessages();
         for (int i = 0; i < messages.length; i++) {
-                messages[i] = msgToDisplay.get(i);
-
+            messages[i] = msgToDisplay.get(i);
         }
+
+        currentState = currentState.goToNextState();
 
         return true;
     }
 
     @Override
     public Handable getCPUHand() {
-        return cpuPlayer.getHand();
+        return cpuPlayer.getplayerHand();
     }
 
     @Override
     public Handable getHumanHand() {
-        return humanPlayer.getHand();
+        return humanPlayer.getplayerHand();
     }
 
     //increament the number of games played
-    public void increamentGameNumber(){
+    public void increamentGameNumber() {
         numGames++;
     }
 
@@ -73,7 +68,6 @@ public class GameLogic implements GameLogicable{
     public void setCurrentState(GameState currentState) {
         this.currentState = currentState;
     }
-
 
     public int getGameNumber() {
         return numGames;
@@ -118,7 +112,6 @@ public class GameLogic implements GameLogicable{
     public LinkedList<Cardable> getDiscardedCards() {
         return discardedCards;
     }
-
 
     public void setDiscardedCards(LinkedList<Cardable> discardedCards) {
         this.discardedCards = discardedCards;

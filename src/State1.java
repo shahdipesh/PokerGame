@@ -5,22 +5,22 @@ public class State1 extends GameState {
         super(gameLogic);
     }
 
-    public ArrayList<String> getMessages() {
+    public ArrayList<String> playState() {
         ArrayList<String> messages = new ArrayList<String>();
 
-        messages.add("Beginning of Game " + getGameLogic().getGameNumber());
-        messages.add(getGameLogic().getHumanPlayer().getName() + ", choose which cards to discard");
+        getGL().increamentGameNumber();
+
+        messages.add("Beginning of Game " + getGL().getGameNumber());
+        messages.add(getGL().getHumanPlayer().getName() + ", choose which cards to discard");
         messages.add("and click on the Proceed button.");
         messages.add(null);
+
+        getGL().getHumanHand().showAllCards();
+        ((Hand)getGL().getCPUHand()).hideAllCards();
         return messages;
     }
 
-    public void performAction() {
-        getGameLogic().increamentGameNumber();
-        getGameLogic().getHumanHand().showAllCards();
-    }
-
-    public GameState getNextState() {
-        return new State2(getGameLogic());
+    public GameState goToNextState() {
+        return new State2(getGL());
     }
 }

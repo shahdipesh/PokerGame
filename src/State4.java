@@ -5,9 +5,11 @@ public class State4 extends GameState {
         super(gameLogic);
     }
 
-    public ArrayList<String> getMessages() {
+    public ArrayList<String> playState() {
         ArrayList<String> messages = new ArrayList<String>();
 
+        getGL().getCPUHand().draw(getGL().getDeck(), false);
+        getGL().getHumanHand().draw(getGL().getDeck(), true);
         messages.add("Each player has been dealt new cards.");
         messages.add("Click on Proceed to see the winner!");
         messages.add(null);
@@ -16,12 +18,7 @@ public class State4 extends GameState {
         return messages;
     }
 
-    public void performAction() {
-        getGameLogic().getCPUHand().draw(getGameLogic().getDeck(), false);
-        getGameLogic().getHumanHand().draw(getGameLogic().getDeck(), true);
-    }
-
-    public GameState getNextState(){
-        return new State5(getGameLogic());
+    public GameState goToNextState() {
+        return new State5(getGL());
     }
 }

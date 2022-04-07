@@ -1,24 +1,24 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class State2 extends GameState {
     public State2(GameLogic gameLogic) {
         super(gameLogic);
     }
 
-    public ArrayList<String> getMessages() {
+    public ArrayList<String> playState() {
         ArrayList<String> messages = new ArrayList<String>();
+        LinkedList<Cardable> discarded = getGL().getHumanHand().discard();
+        getGL().getDiscardedCards().addAll(discarded);
 
-        messages.add(getGameLogic().getHumanPlayer().getName() + " has discarded cards.");
-        messages.add(getGameLogic().getCpuPlayer().getName() + " is thinking...");
+        messages.add(getGL().getHumanPlayer().getName() + " has discarded cards.");
+        messages.add(getGL().getCpuPlayer().getName() + " is thinking...");
         messages.add(null);
         messages.add(null);
         return messages;
     }
-    public void performAction() {
-        getGameLogic().getDiscardedCards().addAll(getGameLogic().getHumanHand().discard());
-    }
 
-    public GameState getNextState() {
-        return new State3(getGameLogic());
+    public GameState goToNextState() {
+        return new State3(getGL());
     }
 }

@@ -1,14 +1,15 @@
 abstract class Player {
     private String name;
     private int wins;
-    private Hand hand;
+    private Hand playerHand;
 
     public Player(String name) {
         this.name = name;
         wins = 0;
-        hand = new Hand();
+        playerHand = new Hand();
     }
-    public abstract void makeMove();
+
+    public abstract void discardCards();
 
     public String getName() {
         return name;
@@ -18,8 +19,24 @@ abstract class Player {
         return wins;
     }
 
-    public Hand getHand() {
-        return hand;
+    public Hand getplayerHand() {
+        return playerHand;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public Hand getPlayerHand() {
+        return playerHand;
+    }
+
+    public void setPlayerHand(Hand playerHand) {
+        this.playerHand = playerHand;
     }
 
     public void win() {

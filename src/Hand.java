@@ -1,14 +1,23 @@
+// CLASS: Hand
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: This class defines a Hand
+//
+//-----------------------------------------
+
 import java.util.ArrayList;
 
 import java.util.Collections;
 import java.util.LinkedList;
 
-public class Hand implements Handable {
+public class Hand implements Handable,TestableHand {
 
     ArrayList<Cardable> hand;
 
+    //constructor
     public Hand() {
-        hand = new ArrayList<Cardable>(Handable.HAND_SIZE);
+        hand = new ArrayList<Cardable>();
         for (int i = 0; i < 5; i++) {
             hand.add(null);
         }
@@ -134,10 +143,25 @@ public class Hand implements Handable {
 
     }
 
+    public ArrayList<Cardable> getHand() {
+        return hand;
+    }
 
+    //add card to hand
+    public void addCardToHand(Cardable c) {
+        boolean found = false;
+        for (int i = 0; i < Handable.HAND_SIZE && !found; i++) {
+            if (hand.get(i) == null) {
+                hand.set(i, c);
+                found = true;
+            }
+        }
+    }
 
-
-
-
-
+    @Override
+    public void addCards(Cardable[] cards) {
+        for (int i = 0; i < cards.length; i++) {
+           hand.set(i, cards[i]);
+        }
+    }
 }

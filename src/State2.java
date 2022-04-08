@@ -1,3 +1,11 @@
+
+// CLASS: State2
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: This class defines the second stage of the game
+//
+//-----------------------------------------
 import java.util.ArrayList;
 import java.util.LinkedList;
 

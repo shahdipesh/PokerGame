@@ -6,20 +6,21 @@ public class State6 extends GameState {
     }
 
     public ArrayList<String> playState() {
-        ArrayList<String> messages = new ArrayList<String>();
+        ArrayList<String> messages = new ArrayList<String>();//list of messages to be displayed
 
-        messages.add("Click on Proceed to play a new game!");
+        messages.add("Click on Proceed to play a new game!");//display message
         messages.add(null);
         messages.add(null);
         messages.add(null);
 
-        getGL().setDeck(new Deck());
-        getGL().getDeck().shuffle();
-        getGL().getDeck().returnToDeck(getGL().getHumanHand().returnCards());
-        getGL().getDeck().shuffle();
-        getGL().getCPUHand().draw(getGL().getDeck(), false);
-        getGL().getHumanHand().draw(getGL().getDeck(), false);
-        return messages;
+
+        getGL().getDeck().shuffle();//shuffle the deck
+        getGL().getDeck().returnToDeck(getGL().getHumanHand().returnCards());//return human hand to deck
+        getGL().getDeck().returnToDeck(getGL().getCPUHand().returnCards()); //return CPU hand to deck
+        getGL().getDeck().shuffle();//shuffle the deck
+        getGL().getCPUHand().draw(getGL().getDeck(), false);//draw a card for the CPU
+        getGL().getHumanHand().draw(getGL().getDeck(), false);//draw a card for the human
+        return messages;//return the messages
     }
 
     public GameState goToNextState() {

@@ -1,3 +1,12 @@
+
+
+// CLASS: State3
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: This class defines the third stage of the game
+//
+//-----------------------------------------
 import java.util.ArrayList;
 
 public class State3 extends GameState {

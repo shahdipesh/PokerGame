@@ -1,4 +1,10 @@
-
+// CLASS: SortBySuit
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: This class sorts the hand by the value of the value of suit.
+//
+//-----------------------------------------
 import java.util.Comparator;
 
 public class SortBySuit implements Comparator<Cardable> {

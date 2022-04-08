@@ -128,6 +128,17 @@ public class Card implements Cardable{
         return mySuit;
     }
 
+    //compareTo method
+    public int compareTo(Card card) {
+        if (this.getValue() > card.getValue()) {
+            return 1;
+        } else if (this.getValue() < card.getValue()) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
 
     public void setMySuit(Suit mySuit) {
         this.mySuit = mySuit;

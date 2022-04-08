@@ -5,7 +5,7 @@ public class HumanPlayer extends Player {
 
     @Override
     public void discardCards() {
-
+        //No implementation needed
     }
 
 }

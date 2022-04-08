@@ -1,3 +1,11 @@
+
+// CLASS: State1
+//
+// Author: Dipesh Shah, 7882947
+//
+// REMARKS: This class defines the first stage of the game
+//
+//-----------------------------------------
 import java.util.ArrayList;
 
 public class State1 extends GameState {
